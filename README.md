@@ -22,7 +22,7 @@ Import string: Bottom of this page or importstring.txt
 #### Display tab:
 Display icon: Spell_Holy_BorrowedTime<br>
 Text: %c<br>
-Custom function: dynpulltimer_display.lua<br>
+Custom function: <a href="https://github.com/karlarvidsson/wow-dynamic-pull-timer/blob/master/dynpulltimer_display.lua">dynpulltimer_display.lua</a>  <br>
 Size: 21<br>
 Width: 40<br>
 Height: 40<br>
@@ -32,17 +32,17 @@ Required for activation: any
 Type: custom<br>
 Event Type: Status<br>
 Check on: every frame<br>
-Custom Trigger: dynpulltimer_t1.lua
+Custom Trigger: <a href="https://github.com/karlarvidsson/wow-dynamic-pull-timer/blob/master/dynpulltimer_t1.lua">dynpulltimer_t1.lua</a> 
 ##### Trigger 2:
 Type: custom<br>
 Event Type: Event<br>
 Event: PLAYER_SPECIALIZATION_CHANGED<br>
-Custom Trigger: dynpulltimer_t2.lua
+Custom Trigger: <a href="https://github.com/karlarvidsson/wow-dynamic-pull-timer/blob/master/dynpulltimer_t2.lua">dynpulltimer_t2.lua</a> 
 ##### Trigger 3:
 Type: custom<br>
 Event Type: Event<br>
 Event: INSPECT_READY<br>
-Custom Trigger: dynpulltimer_t3.lua
+Custom Trigger: <a href="https://github.com/karlarvidsson/wow-dynamic-pull-timer/blob/master/dynpulltimer_t3.lua">dynpulltimer_t3.lua</a> 
 
 #### Import string:
 <a href="https://github.com/karlarvidsson/wow-dynamic-pull-timer/blob/master/importstring.txt">Import string</a>
