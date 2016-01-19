@@ -4,7 +4,7 @@ function(e, arg1)
 		local spec = GetInspectSpecialization(name)
 		if WA_DPT_time_needed_from_spec[spec] >= WA_DPT_countdown then
 			WA_DPT_countdown = WA_DPT_time_needed_from_spec[spec]
-			EditMacro(WA_DPT_macro_name, nil, nil, string.format("/dbm pull %d", WA_DPT_countdown), 1, nil);
+			EditMacro(WA_DPT_macro_name, nil, nil, string.format(WA_DPT_macro_body_text, WA_DPT_countdown), 1, nil);
 		else
 			local n = GetNumGroupMembers() or 0
 			local largest = 0
