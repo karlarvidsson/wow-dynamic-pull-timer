@@ -17,8 +17,8 @@ to <br>
 ### Weakaura info:
 
 Type: Icon<br>
-Loaded: Not in combat
-Import string: <a href="https://github.com/karlarvidsson/wow-dynamic-pull-timer/blob/master/importstring.txt">Import string</a>
+Loaded: Not in combat <br>
+<a href="https://github.com/karlarvidsson/wow-dynamic-pull-timer/blob/master/importstring.txt">Import string</a><br>
 
 #### Display tab:
 Display icon: Spell_Holy_BorrowedTime<br>
