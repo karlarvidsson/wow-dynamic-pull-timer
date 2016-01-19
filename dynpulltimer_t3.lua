@@ -1,7 +1,8 @@
 function(e, arg1)
     print(e)
-    print(arg1)
+   -- print(arg1)
 	local _,_,_,race,_,name,realm = GetPlayerInfoByGUID(arg1)
+	print(name)
 	if name then
 		local spec = GetInspectSpecialization(name)
 		print("spec:", spec, "new time:", WA_DPT_time_needed_from_spec[spec], "old time:", WA_DPT_countdown)
@@ -11,9 +12,20 @@ function(e, arg1)
 			print("countdown updated from talent trigger", WA_DPT_countdown)
 		else
 			local n = GetNumGroupMembers() or 0
+			print("n:",n)
 			local largest = 0
 			for i=1,n do
 				local raider = GetRaidRosterInfo(i)
+				print("i:", i, "raider:",raider)
+				
+				print(name, raider)
+			--	if _G["GExRT"].A["InspectViewer"].db.inspectDB[raider] then
+			--		print(_G["GExRT"].A["InspectViewer"].db.inspectDB[raider])
+			--		if _G["GExRT"].A["InspectViewer"].db.inspectDB[raider].spec then
+			--			print(_G["GExRT"].A["InspectViewer"].db.inspectDB[raider].spec)
+			--		end
+			--	end
+				
 				if _G["GExRT"].A["InspectViewer"].db.inspectDB[raider] and _G["GExRT"].A["InspectViewer"].db.inspectDB[raider].spec and name ~= raider then
 					local s = _G["GExRT"].A["InspectViewer"].db.inspectDB[raider].spec;
 					local _,spec_name,_ = GetSpecializationInfoByID(s)
@@ -23,6 +35,7 @@ function(e, arg1)
 					end
 				end
 			end
+			print("largest:", largest, "WA_DPT_countdown:",WA_DPT_countdown)
 			if largest == 0 then
 				print("spec changer was the only one found, going with time needed for new spec")
 				largest = WA_DPT_time_needed_from_spec[spec]
