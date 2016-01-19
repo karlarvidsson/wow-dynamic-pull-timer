@@ -31,8 +31,8 @@ function(e)
             [258] = 10, -- Priest: Shadow
             [259] = 10, -- Rogue: Assassination
             [260] = 10, -- Rogue: Combat
-            [261] = 10, -- Rogue: Subtlety
-            [262] = 10, -- Shaman: Elemental
+            [261] = 25, -- Rogue: Subtlety
+            [262] = 16, -- Shaman: Elemental
             [263] = 10, -- Shaman: Enhancement
             [264] = 10, -- Shaman: Restoration
             [265] = 22, -- Warlock: Affliction
