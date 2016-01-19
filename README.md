@@ -3,7 +3,15 @@ World of Warcraft dynamic pull timer based on weakauras2 and exorsus raid tools.
 
 REQUIRED: This weakaura requires exorsus raid tools.
 
-Generates a non character specific macro called WA_DPT_pull_macro with body "/ert pull x", where x is set to the highest preparation time for all specs in the raid. I.e., if there is an affliction warlock in the raid, x = 22.
+Generates a non character specific macro called WA_DPT_pull_macro with body "/ert pull x", where x is set to the highest preparation time for all specs in the raid. I.e., if there is an affliction warlock in the raid, x = 22. <br>
+<br>
+To make changes to the pull time needed for a spec, edit the table in the custom function of trigger 1 (dynpulltimer.lua). <br>
+<br>Example: <br>
+To change the pull time for arms warriors from 10 to 15 seconds, change the following line: <br>
+            [71] = 10,    -- Warrior: Arms <br>
+to <br>
+            [71] = 15,    -- Warrior: Arms <br>
+
 
 <br>
 ### Weakaura info:
