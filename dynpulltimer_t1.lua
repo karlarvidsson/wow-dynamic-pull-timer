@@ -1,11 +1,7 @@
--- Usage:
---  asdasd
---
---
-
 function(e)
     if not WA_DPT_initialized then
         WA_DPT_macro_name = "WA_DPT_pull_macro"
+		WA_DPT_macro_body_text = "/ert pull %d"
         WA_DPT_update_interval = 3
         WA_DPT_countdown = WA_DPT_countdown or 10
         WA_DPT_pulse_timer = WA_DPT_pulse_timer or 0
@@ -19,7 +15,7 @@ function(e)
             [70] = 10,    -- Paladin: Retribution
             [71] = 10,    -- Warrior: Arms
             [72] = 10,    -- Warrior: Fury
-            [73] = 11,    -- Warrior: Protection
+            [73] = 10,    -- Warrior: Protection
             [102] = 10,    -- Druid: Balance
             [103] = 10, -- Druid: Feral
             [104] = 10, -- Druid: Guardian
@@ -40,18 +36,16 @@ function(e)
             [263] = 10, -- Shaman: Enhancement
             [264] = 10, -- Shaman: Restoration
             [265] = 22, -- Warlock: Affliction
-            [266] = 14, -- Warlock: Demonology
-            [267] = 17, -- Warlock: Destruction
+            [266] = 10, -- Warlock: Demonology
+            [267] = 10, -- Warlock: Destruction
             [268] = 10, -- Monk: Brewmaster
             [269] = 10, -- Monk: Windwalker
             [270] = 10, -- Monk: Mistweaver
         }
         if GetMacroIndexByName(WA_DPT_macro_name) == 0 then
-            CreateMacro(WA_DPT_macro_name, "Spell_Holy_BorrowedTime", "/say 0", nil)
-            print("macro created")
+            CreateMacro(WA_DPT_macro_name, "Spell_Holy_BorrowedTime", string.format(WA_DPT_macro_body_text, 10), nil)
         end
         WA_DPT_initialized = true
-        print("initialized")
     end
     
     if not WA_DPT_initialized then
@@ -59,18 +53,13 @@ function(e)
     end
     
     WA_DPT_pulse_timer = time() - WA_DPT_last_pulse
-    cnt = cnt or 0
     if WA_DPT_pulse_timer >= WA_DPT_update_interval then
-        print("triggered", cnt)
-        
         local time_needed = 10
         local n = GetNumGroupMembers() or 0
         for i=1,n do
             local name,_,subgroup = GetRaidRosterInfo(i)
             if _G["GExRT"].A["InspectViewer"].db.inspectDB[name] and _G["GExRT"].A["InspectViewer"].db.inspectDB[name].spec then
                 local spec = _G["GExRT"].A["InspectViewer"].db.inspectDB[name].spec;
-                local _,spec_name,_ = GetSpecializationInfoByID(spec)
-                print("player:", name, " spec:", spec, spec_name, "time needed:", WA_DPT_time_needed_from_spec[spec])
                 if WA_DPT_time_needed_from_spec[spec] > time_needed then
                     time_needed = WA_DPT_time_needed_from_spec[spec]
                 end
@@ -78,9 +67,8 @@ function(e)
         end
         WA_DPT_countdown = time_needed
         
-        EditMacro(WA_DPT_macro_name, nil, nil, string.format("/dbm pull %d", WA_DPT_countdown), 1, nil);
+        EditMacro(WA_DPT_macro_name, nil, nil, string.format(WA_DPT_macro_body_text, WA_DPT_countdown), 1, nil);
         WA_DPT_last_pulse = time()
-        cnt = cnt + 1
     end
     return true
 end
