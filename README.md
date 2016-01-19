@@ -45,4 +45,4 @@ Event: INSPECT_READY<br>
 Custom Trigger: dynpulltimer_t3.lua
 
 #### Import string:
-tbd
+<a href="https://github.com/karlarvidsson/wow-dynamic-pull-timer/blob/master/importstring.txt">Import string</a>
