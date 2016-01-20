@@ -1,4 +1,5 @@
 # Dynamic Pull Timer (DPT)
+http://www.curse.com/addons/wow/dynamic-pull-timer
 World of Warcraft addon for automatic dynamic pull timer based on exorsus raid tools.
 
 REQUIRED: This addon requires exorsus raid tools (DPT uses help from ExRT to know what specs are currently in the raid).
