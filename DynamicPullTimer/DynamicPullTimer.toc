@@ -1,0 +1,10 @@
+## Interface: 60000
+## Title: Dynamic Pull Timer
+## Notes: A tool for automatically deciding on the pre pull preparation time needed depending on specs in the raid.
+## Version: 0.1
+## Author: Tigerlol
+## SavedVariables: DynamicPullTimerSaved
+## Dependencies: ExRT
+## DefaultState: enabled
+
+DynamicPullTimer.lua

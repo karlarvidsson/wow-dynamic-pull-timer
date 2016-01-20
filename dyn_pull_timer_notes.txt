@@ -1,8 +1,0 @@
-/run for k, v in pairs(_G["GExRT"].A["InspectViewer"].db.classIDs) do print(k, v) end
-/run print((_G["GExRT"].A["InspectViewer"].db.inspectDB["Tigerlol"].spec))
-/run  _,name,_ = GetSpecializationInfoByID((_G["GExRT"].A["InspectViewer"].db.inspectDB["Tigerlol"].spec)); print(name);
-
-/run name = GetRaidRosterInfo(1); print(name); _,spec,_ = GetSpecializationInfoByID((_G["GExRT"].A["InspectViewer"].db.inspectDB[name].spec)); print(spec);
-
-/run print(type(_G["GExRT"].A["Inspect"].main.INSPECT_READY))
-/run _G["GExRT"].A["Inspect"].main.INSPECT_READY(name)
