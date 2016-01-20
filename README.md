@@ -5,6 +5,10 @@ REQUIRED: This addon requires exorsus raid tools (DPT uses help from ExRT to kno
 
 This addon automatically decides on a pre pull preparation time based on specs in the raid, and then calls "/ert pull x", where x is set to the highest preparation time for all specs in the raid. I.e., if there are affliction warlocks in the raid, the pull timer will be set to 22 seconds unless some other spec requires even more time. <br>
 <br>
+### Usage:
+"/dpt" to initiate pull. This is equivalent to "/ert pull x", where x is the automatically determined pull time.<br>
+<br>
+### Settings:
 For now, to manually make changes to the pull time needed for a spec, values must be editted in the addon's .lua file <br>
 <br>Example: <br>
 To change the pull time for arms warriors from 10 to 15 seconds, change the following line in DynamicPullTimer.lua: <br>
