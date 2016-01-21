@@ -369,15 +369,20 @@ function module:slash(arg,msgDeformatted)
 	end
 end
 
-
+local function tableCopy(t)
+    local copy = {}
+    for k, v in pairs(t) do
+        copy[k] = v
+    end
+    return copy
+end
 
 function module.options:Load()
 	self:CreateTilte()
 	
-	
 	-- Spec timer options load
 
-	VExRT.Timers.specTimes = VExRT.Timers.specTimes or defaultSpecTimers
+	VExRT.Timers.specTimes = VExRT.Timers.specTimes or tableCopy(defaultSpecTimers)
 	local function SpecsEditBoxTextChanged(self,isUser)
 		if not isUser then
 			return
@@ -399,6 +404,7 @@ function module.options:Load()
 	self.scrollFrame = ELib:ScrollFrame(self):Size(655,300):Point("TOP",0,-310):Height(550)
 	self.scrollFrame.C.classTitles = {}
 	self.scrollFrame.C.classFrames = {}
+	local i = 1
 	for key, class in ipairs(module.db.classNames) do
 		
 		local column = (key-1) % 3
@@ -425,7 +431,16 @@ function module.options:Load()
 			specFrame.specEditBox.id = spec
 		end
 	end
-
+	self.ButtonToDefaultTimers = ELib:Button(self,L.TimerSpecTimerDefault):Size(255,20):Point(260,-255):Tooltip(L.TimerSpecTimerDefaultTooltip):OnClick(function()
+		VExRT.Timers.specTimes = tableCopy(defaultSpecTimers)
+		for key, class in ipairs(module.db.classNames) do
+			for specRow, spec in ipairs(module.db.specByClass[class]) do
+				local specFrame = self.scrollFrame.C.classFrames[class].specFrames[spec]
+				specFrame.specEditBox:SetText(VExRT.Timers.specTimes[spec])
+			end
+		end
+		
+	end) 
 	-- end of spec timer options load
 	
 	
