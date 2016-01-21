@@ -55,6 +55,12 @@ function DynamicPullTimer.EventHandler(self, event, arg1)
 		local _,_,_,_,_,name,_ = GetPlayerInfoByGUID(arg1)
 		if name then
 			local spec = GetInspectSpecialization(name)
+			if not spec then
+				return
+			end
+			if not DynamicPullTimer.time_needed_from_spec[spec] then
+				return
+			end
 			if DynamicPullTimer.time_needed_from_spec[spec] >= DynamicPullTimer.countdown then
 				DynamicPullTimer.countdown = DynamicPullTimer.time_needed_from_spec[spec]
 			else
