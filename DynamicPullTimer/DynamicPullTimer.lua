@@ -34,7 +34,7 @@ DynamicPullTimer.time_needed_from_spec = {
             [264] = 10, -- Shaman: Restoration
             [265] = 22, -- Warlock: Affliction
             [266] = 10, -- Warlock: Demonology
-            [267] = 10, -- Warlock: Destruction
+            [267] = 12, -- Warlock: Destruction
             [268] = 10, -- Monk: Brewmaster
             [269] = 10, -- Monk: Windwalker
             [270] = 10, -- Monk: Mistweaver
@@ -67,11 +67,13 @@ function DynamicPullTimer.EventHandler(self, event, arg1)
 				local n = GetNumGroupMembers() or 0
 				local largest = 0
 				for i=1,n do
-					local raider = GetRaidRosterInfo(i)
-					if _G["GExRT"].A["InspectViewer"].db.inspectDB[raider] and _G["GExRT"].A["InspectViewer"].db.inspectDB[raider].spec and name ~= raider then
-						local s = _G["GExRT"].A["InspectViewer"].db.inspectDB[raider].spec;
-						if DynamicPullTimer.time_needed_from_spec[s] > largest then
-							largest = DynamicPullTimer.time_needed_from_spec[s]
+					local raider,_, subgroup, _, _, _, _, online = GetRaidRosterInfo(i)
+					if subgroup <= 6 and online then
+						if _G["GExRT"].A["InspectViewer"].db.inspectDB[raider] and _G["GExRT"].A["InspectViewer"].db.inspectDB[raider].spec and name ~= raider then
+							local s = _G["GExRT"].A["InspectViewer"].db.inspectDB[raider].spec;
+							if DynamicPullTimer.time_needed_from_spec[s] > largest then
+								largest = DynamicPullTimer.time_needed_from_spec[s]
+							end
 						end
 					end
 				end
@@ -97,11 +99,15 @@ function DynamicPullTimer.UpdateCountdown()
 	local time_needed = 10
 	local n = GetNumGroupMembers() or 0
 	for i=1,n do
-		local name = GetRaidRosterInfo(i)
-		if _G["GExRT"].A["InspectViewer"].db.inspectDB[name] and _G["GExRT"].A["InspectViewer"].db.inspectDB[name].spec then
-			local spec = _G["GExRT"].A["InspectViewer"].db.inspectDB[name].spec;
-			if DynamicPullTimer.time_needed_from_spec[spec] > time_needed then
-				time_needed = DynamicPullTimer.time_needed_from_spec[spec]
+		local name,_, subgroup, _, _, _, _, online = GetRaidRosterInfo(i)
+		if subgroup <= 6 and online then
+			if _G["GExRT"].A["InspectViewer"].db.inspectDB[name] and _G["GExRT"].A["InspectViewer"].db.inspectDB[name].spec then
+				local spec = _G["GExRT"].A["InspectViewer"].db.inspectDB[name].spec;
+				if spec and DynamicPullTimer.time_needed_from_spec[spec] then
+					if DynamicPullTimer.time_needed_from_spec[spec] > time_needed then
+						time_needed = DynamicPullTimer.time_needed_from_spec[spec]
+					end
+				end
 			end
 		end
 	end
